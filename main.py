@@ -1,9 +1,9 @@
-from . import main_action
-from . import arena
+import arena.arena_action as arena_action
+import main_action.menu as menu
 
 # словари с персонажами
-knight = {'hp': 10, 'dmg': 2, 'armor': 10}
-orc = {'hp': 17, 'dmg': 5, 'armor': 1}
+knight = {'hp': 10, 'dmg': 5, 'armor': 7}
+orc = {'hp': 17, 'dmg': 12, 'armor': 1}
 
 # списки с выборами действий
 ar_main_menu = ["Пойти в магазин", "Пойти на арену","Выход"]
