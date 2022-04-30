@@ -1,14 +1,15 @@
-import arena.arena_action as arena_action
-import main_action.menu as menu
+from main_action.menu import menu
+from arena.arena_main import arena_main
+from shop.shop_main import shop_main
 
 # словари с персонажами
-knight = {'hp': 10, 'dmg': 5, 'armor': 7}
+knight = {'hp': 10, 'dmg': 15, 'armor': 7, 'gold': 100, 'items': ["Малое лечебное зелье"]}
 orc = {'hp': 17, 'dmg': 12, 'armor': 1}
 
-# списки с выборами действий
-ar_main_menu = ["Пойти в магазин", "Пойти на арену","Выход"]
-ar_choice_attack = ["В Голову","В Тело", "В Ноги"]
-ar_choice_def = ["В Голову","В Тело", "В Ноги"]
+ar_main_menu = ["Пойти в магазин", "Пойти на арену", "Посмотреть героя", "Выход"]
+
+shop_flask = ["Малое лечебное зелье", "Малое лечебное зелье", "Большое лечебное зелье"]
+shop_armory = ["Деревянный меч"]
 
 player_choice = True
 
@@ -16,29 +17,17 @@ player_choice = True
 while player_choice != "0":
 
     # Показать игроку действия, выбор действия
-    player_choice = menu.menu(ar_main_menu)
+    player_choice = menu(ar_main_menu)
 
     # Идем в магазин
     if player_choice == "1":
-        print("Вы в магазине")
+       knight,shop_flask,shop_armory = shop_main(knight,shop_flask,shop_armory)
+
 
     # Идем на арену
     elif player_choice == "2":
 
-        # Начинается арена, не закончится, пока хп не упадет ниже 0 у кого нибудь
-        while knight["hp"] > 0 and orc["hp"] > 0:
+        knight, orc = arena_main(knight, orc)
 
-            # Показать игроку действия, выбор действия
-            player_choice = menu.menu(ar_choice_attack)
-
-            # Функция наннесения урона противнику
-            orc = arena_action.player_attack(player_choice, knight, orc)
-            print(orc)
-
-            # Функция защиты
-
-            player_choice = menu.menu(ar_choice_def)
-            knight = arena_action.player_def(player_choice,knight,orc)
-            print(knight)
-
-
+    elif player_choice == "3":
+        print(knight)

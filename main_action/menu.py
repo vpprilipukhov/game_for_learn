@@ -1,4 +1,5 @@
 def menu(ar):
+    print()
     for i in range(len(ar)):
 
         if ar[i] == "Выход":
@@ -6,3 +7,4 @@ def menu(ar):
         else:
             print(str(i + 1) + ")" + " " + ar[i])
     return input('Выберите действиe: ')
+
